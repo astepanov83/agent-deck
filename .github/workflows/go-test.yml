@@ -118,8 +118,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # cmd/agent-deck alone takes ~9 min and internal/session ~15 min, so
-        # they are cut by test name; the other groups fit one runner each.
+        # cmd/agent-deck alone takes ~9 min, so it is cut three ways by test
+        # name; the other groups fit one runner each.
         shard:
           - name: cmd-a
             packages: ./cmd/...
@@ -130,12 +130,8 @@ jobs:
           - name: cmd-c
             packages: ./cmd/...
             run: '^Test[S-Z_a-z0-9]'
-          - name: session-a
+          - name: session
             packages: ./internal/session/...
-            run: '^Test[A-F]'
-          - name: session-b
-            packages: ./internal/session/...
-            run: '^Test[G-Z_a-z0-9]'
           - name: ui-web
             packages: ./internal/ui/... ./internal/web/... ./tests/...
           - name: rest
